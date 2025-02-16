@@ -1,0 +1,17 @@
+<nav class="flex justify-between items-center px-6 py-4 bg-gray-800 shadow-lg">
+    <div class="text-2xl font-bold"><a href="/">{{ site.title }}</a></div>
+    <div class="space-x-4">
+        <a
+            href="/"
+            class="px-4 py-2 rounded-lg {% if page.url == '/' %}bg-gray-600 text-white{% else %}hover:bg-gray-600{% endif %}"
+        >
+            Home
+        </a>
+        <a
+            href="/archive"
+            class="px-4 py-2 rounded-lg {% if page.url == '/archive/' %}bg-gray-600 text-white{% else %}hover:bg-gray-600{% endif %}"
+        >
+            Archive
+        </a>
+    </div>
+</nav>

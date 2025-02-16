@@ -1,0 +1,51 @@
+{% assign colors =
+"bg-red-500,bg-blue-500,bg-green-500,bg-yellow-500,bg-pink-500,bg-purple-500,bg-indigo-500,bg-teal-500"
+| split: "," %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{{ page.title }}</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="bg-gray-900 text-white">
+        {% include header.html %}
+        <article
+            class="max-w-3xl mx-auto px-6 py-12 space-y-8 bg-gray-900 text-white rounded-lg shadow-lg"
+        >
+            <header>
+                <h1 class="text-4xl font-bold tracking-wide leading-tight">
+                    {{ page.title }}
+                </h1>
+                <p class="text-gray-400 mt-4 text-lg">
+                    <time
+                        datetime="{{ page.date | date_to_xmlschema }}"
+                        class="font-medium"
+                        >{{ page.date | date: "%B %d, %Y" }}</time
+                    >
+                    {% if page.categories %}
+                    <span class="mx-2">|</span>
+                    {% for category in page.categories %} {% assign color_index
+                    = forloop.index0 | modulo: colors.size %}
+                    <span
+                        class="{{ colors[color_index] }} text-white text-xs px-2 py-1 mr-4 rounded"
+                    >
+                        {{ category }}
+                    </span>
+                    {% endfor %} {% endif %}
+                </p>
+            </header>
+
+            <div class="mt-10 space-y-6 text-lg leading-relaxed">
+                {{ content }}
+            </div>
+
+            <footer class="mt-12">
+                <p class="text-center text-gray-400">Thank you for reading!</p>
+            </footer>
+        </article>
+        {% include footer.html %}
+    </body>
+</html>
